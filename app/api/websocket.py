@@ -114,7 +114,3 @@ async def websocket_execute(websocket: WebSocket, graph_id: str):
             await websocket.close()
         except:
             pass
-
-
-
-

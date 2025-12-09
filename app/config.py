@@ -13,7 +13,8 @@ class Settings(BaseSettings):
     port: int = 8000
     log_level: str = "INFO"
 
-    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/workflow_engine"
+    # Use SQLite in-memory database for development without PostgreSQL
+    database_url: str = "sqlite+aiosqlite:///:memory:"
     database_echo: bool = False
 
     max_loop_iterations: int = 100
@@ -24,7 +25,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
-
-
-

@@ -54,7 +54,3 @@ class ExecutionLog(BaseModel):
     status: str = "pending"
     duration_ms: float = 0.0
     error: Optional[str] = None
-
-
-
-

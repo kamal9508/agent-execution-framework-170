@@ -116,7 +116,3 @@ async def delete_graph(
         raise HTTPException(status_code=404, detail="Graph not found")
 
     return {"message": "Graph deleted successfully"}
-
-
-
-

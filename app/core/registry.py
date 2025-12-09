@@ -43,7 +43,3 @@ class ToolRegistry:
 
 
 tool_registry = ToolRegistry()
-
-
-
-

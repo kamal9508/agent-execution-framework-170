@@ -34,7 +34,8 @@ async def test_simple_workflow(setup_tools):
         name="Simple Test",
         nodes=[
             NodeConfig(node_id="add", node_type="tool", tool_name="add_one"),
-            NodeConfig(node_id="multiply", node_type="tool", tool_name="multiply_by_two"),
+            NodeConfig(node_id="multiply", node_type="tool",
+                       tool_name="multiply_by_two"),
         ],
         edges=[
             EdgeConfig(from_node="add", to_node="multiply"),
@@ -64,7 +65,8 @@ async def test_conditional_workflow(setup_tools):
         nodes=[
             NodeConfig(node_id="add", node_type="tool", tool_name="add_one"),
             NodeConfig(node_id="check", node_type="tool", tool_name="check"),
-            NodeConfig(node_id="multiply", node_type="tool", tool_name="multiply_by_two"),
+            NodeConfig(node_id="multiply", node_type="tool",
+                       tool_name="multiply_by_two"),
         ],
         edges=[
             EdgeConfig(from_node="add", to_node="check"),
@@ -84,7 +86,3 @@ async def test_conditional_workflow(setup_tools):
     final_state, logs = await engine.execute(initial_state)
 
     assert final_state.get("counter") == 12
-
-
-
-

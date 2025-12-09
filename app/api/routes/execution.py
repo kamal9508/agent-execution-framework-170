@@ -168,7 +168,3 @@ async def get_execution_result(
         raise HTTPException(status_code=404, detail="Execution not found")
 
     return result
-
-
-
-

@@ -146,13 +146,15 @@ def complex_function(a, b, c, d, e):
 
                 final_state = result["final_state"]
 
-                print(f"\nFunctions found: {final_state.get('function_count', 0)}")
+                print(
+                    f"\nFunctions found: {final_state.get('function_count', 0)}")
 
                 complexity_issues = final_state.get('complexity_issues', [])
                 if complexity_issues:
                     print(f"\nComplexity Issues ({len(complexity_issues)}):")
                     for issue in complexity_issues:
-                        print(f"  - {issue['name']}: complexity {issue['complexity']}")
+                        print(
+                            f"  - {issue['name']}: complexity {issue['complexity']}")
 
                 issues = final_state.get('issues', [])
                 if issues:
@@ -160,7 +162,8 @@ def complex_function(a, b, c, d, e):
                     issue_types = {}
                     for issue in issues:
                         issue_type = issue['type']
-                        issue_types[issue_type] = issue_types.get(issue_type, 0) + 1
+                        issue_types[issue_type] = issue_types.get(
+                            issue_type, 0) + 1
                     for issue_type, count in issue_types.items():
                         print(f"  - {issue_type}: {count}")
 
@@ -168,7 +171,8 @@ def complex_function(a, b, c, d, e):
                 if suggestions:
                     print(f"\nSuggestions ({len(suggestions)}):")
                     for suggestion in suggestions:
-                        print(f"  - [{suggestion['priority']}] {suggestion['message']}")
+                        print(
+                            f"  - [{suggestion['priority']}] {suggestion['message']}")
 
                 quality_score = final_state.get('quality_score', 0)
                 print(f"\nQuality Score: {quality_score:.1f}/100")
@@ -176,12 +180,14 @@ def complex_function(a, b, c, d, e):
                 print(f"\nExecution Summary:")
                 for log in result['logs']:
                     status_icon = "✓" if log['status'] == 'success' else "✗"
-                    print(f"  {status_icon} {log['node_id']}: {log['duration_ms']:.0f}ms")
+                    print(
+                        f"  {status_icon} {log['node_id']}: {log['duration_ms']:.0f}ms")
 
                 return
 
             elif result["status"] == "failed":
-                print(f"\n✗ Execution failed: {result.get('error', 'Unknown error')}")
+                print(
+                    f"\n✗ Execution failed: {result.get('error', 'Unknown error')}")
                 return
 
         print("\n⚠ Timeout waiting for results")
@@ -189,7 +195,3 @@ def complex_function(a, b, c, d, e):
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-
-
-
