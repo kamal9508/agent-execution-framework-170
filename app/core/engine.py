@@ -2,7 +2,7 @@
 import asyncio
 import logging
 from typing import Dict, List, Optional, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.models.graph import GraphDefinition, EdgeType, LoopConfig
 from app.models.state import WorkflowState, ExecutionLog
@@ -153,7 +153,7 @@ class WorkflowEngine:
                 logger.error(f"Node not found: {current_node_id}")
                 break
 
-            start_time = datetime.utcnow()
+            start_time = datetime.now(tz=timezone.utc)
             log_entry = ExecutionLog(
                 node_id=current_node_id,
                 timestamp=start_time,
@@ -172,7 +172,7 @@ class WorkflowEngine:
                 logs.append(log_entry)
                 raise
             finally:
-                end_time = datetime.utcnow()
+                end_time = datetime.now(tz=timezone.utc)
                 log_entry.duration_ms = (
                     end_time - start_time).total_seconds() * 1000
 
