@@ -37,6 +37,10 @@ class ToolRegistry:
         """
         return self._tools.copy()
 
+    def clear(self) -> None:
+        """Clear all registered tools."""
+        self._tools.clear()
+
 
 tool_registry = ToolRegistry()
 
