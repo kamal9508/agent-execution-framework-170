@@ -105,7 +105,3 @@ def create_code_review_graph(
         loops=loops,
         entry_node="extract"
     )
-
-
-
-

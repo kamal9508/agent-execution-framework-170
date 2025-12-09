@@ -38,7 +38,8 @@ class WorkflowEngine:
             if node_config.tool_name:
                 tool_func = tool_registry.get(node_config.tool_name)
                 if not tool_func:
-                    raise ValueError(f"Tool not found: {node_config.tool_name}")
+                    raise ValueError(
+                        f"Tool not found: {node_config.tool_name}")
             else:
                 tool_func = lambda state, **kwargs: state
 
@@ -64,7 +65,8 @@ class WorkflowEngine:
         for loop in self.graph.loops:
             self.loops[loop.loop_node] = loop
 
-        logger.info(f"Built graph with {len(self.nodes)} nodes, {len(self.edges)} edges")
+        logger.info(
+            f"Built graph with {len(self.nodes)} nodes, {len(self.edges)} edges")
 
     def _evaluate_condition(self, condition: str, state: WorkflowState) -> bool:
         """Evaluate a condition against current state.
@@ -131,7 +133,8 @@ class WorkflowEngine:
         while current_node_id and iteration < max_iter:
             iteration += 1
 
-            visited_counts[current_node_id] = visited_counts.get(current_node_id, 0) + 1
+            visited_counts[current_node_id] = visited_counts.get(
+                current_node_id, 0) + 1
 
             if current_node_id in self.loops:
                 loop_config = self.loops[current_node_id]
@@ -141,7 +144,8 @@ class WorkflowEngine:
                     break
 
                 if visited_counts[current_node_id] > loop_config.max_iterations:
-                    logger.warning(f"Max loop iterations reached for {current_node_id}")
+                    logger.warning(
+                        f"Max loop iterations reached for {current_node_id}")
                     break
 
             node = self.nodes.get(current_node_id)
@@ -169,14 +173,16 @@ class WorkflowEngine:
                 raise
             finally:
                 end_time = datetime.utcnow()
-                log_entry.duration_ms = (end_time - start_time).total_seconds() * 1000
+                log_entry.duration_ms = (
+                    end_time - start_time).total_seconds() * 1000
 
             logs.append(log_entry)
 
             next_nodes = self._get_next_nodes(current_node_id, state)
 
             if not next_nodes:
-                logger.info(f"Reached end of workflow at node {current_node_id}")
+                logger.info(
+                    f"Reached end of workflow at node {current_node_id}")
                 break
 
             current_node_id = next_nodes[0]
@@ -185,7 +191,3 @@ class WorkflowEngine:
             logger.warning(f"Maximum iterations ({max_iter}) reached")
 
         return state, logs
-
-
-
-

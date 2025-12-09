@@ -59,7 +59,3 @@ class ExecutionStateResponse(BaseModel):
     status: ExecutionStatus
     current_state: Dict[str, Any]
     logs: List[ExecutionLog]
-
-
-
-

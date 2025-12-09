@@ -85,7 +85,8 @@ def check_complexity(state: WorkflowState, threshold: int = 10, **kwargs) -> Dic
                 })
             max_complexity = max(max_complexity, item.complexity)
 
-        logger.info(f"Found {len(issues)} complexity issues (threshold: {threshold})")
+        logger.info(
+            f"Found {len(issues)} complexity issues (threshold: {threshold})")
 
         return {
             "complexity_issues": issues,
@@ -182,7 +183,7 @@ def suggest_improvements(state: WorkflowState, **kwargs) -> Dict[str, Any]:
             "priority": "high",
             "message": f"Reduce complexity in {len(complexity_issues)} function(s)",
             "details": [f"{issue['name']} (complexity: {issue['complexity']})"
-                       for issue in complexity_issues[:3]]
+                        for issue in complexity_issues[:3]]
         })
 
     issues = state.get("issues", [])
@@ -209,14 +210,11 @@ def suggest_improvements(state: WorkflowState, **kwargs) -> Dict[str, Any]:
     function_count = state.get("function_count", 1)
     quality_score = max(0, 100 - (total_issues / function_count * 10))
 
-    logger.info(f"Generated {len(suggestions)} suggestions, quality score: {quality_score:.1f}")
+    logger.info(
+        f"Generated {len(suggestions)} suggestions, quality score: {quality_score:.1f}")
 
     return {
         "suggestions": suggestions,
         "suggestion_count": len(suggestions),
         "quality_score": quality_score
     }
-
-
-
-

@@ -212,7 +212,8 @@ class ExecutionRepository:
             db_execution.final_state = final_state
 
         if logs is not None:
-            db_execution.logs = [json.loads(log.model_dump_json()) for log in logs]
+            db_execution.logs = [json.loads(
+                log.model_dump_json()) for log in logs]
 
         if error is not None:
             db_execution.error = error
@@ -253,7 +254,3 @@ class ExecutionRepository:
             completed_at=db_execution.completed_at,
             error=db_execution.error
         )
-
-
-
-

@@ -47,7 +47,3 @@ class Node:
 
     def __repr__(self) -> str:
         return f"Node(id={self.node_id}, func={self.func.__name__})"
-
-
-
-
