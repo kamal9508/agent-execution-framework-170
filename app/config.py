@@ -1,0 +1,30 @@
+"""Application configuration."""
+from pydantic_settings import BaseSettings
+from typing import Optional
+
+
+class Settings(BaseSettings):
+    """Application settings."""
+
+    app_name: str = "Agent Execution Framework"
+    app_version: str = "0.1.0"
+    debug: bool = True
+    host: str = "0.0.0.0"
+    port: int = 8000
+    log_level: str = "INFO"
+
+    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/workflow_engine"
+    database_echo: bool = False
+
+    max_loop_iterations: int = 100
+
+    class Config:
+        env_file = ".env"
+        case_sensitive = False
+
+
+settings = Settings()
+
+
+
+
